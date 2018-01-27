@@ -1,0 +1,56 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "WebPortal", "WebPortal\", "{BC2081C5-ED5B-4762-BAA9-6FF7EE08E7CB}"
+	ProjectSection(WebsiteProperties) = preProject
+		TargetFrameworkMoniker = ".NETFramework,Version%3Dv4.5.2"
+		ProjectReferences = ""
+		Debug.AspNetCompiler.VirtualPath = "/localhost_62323"
+		Debug.AspNetCompiler.PhysicalPath = "WebPortal\"
+		Debug.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_62323\"
+		Debug.AspNetCompiler.Updateable = "true"
+		Debug.AspNetCompiler.ForceOverwrite = "true"
+		Debug.AspNetCompiler.FixedNames = "false"
+		Debug.AspNetCompiler.Debug = "True"
+		Release.AspNetCompiler.VirtualPath = "/localhost_62323"
+		Release.AspNetCompiler.PhysicalPath = "WebPortal\"
+		Release.AspNetCompiler.TargetPath = "PrecompiledWeb\localhost_62323\"
+		Release.AspNetCompiler.Updateable = "true"
+		Release.AspNetCompiler.ForceOverwrite = "true"
+		Release.AspNetCompiler.FixedNames = "false"
+		Release.AspNetCompiler.Debug = "False"
+		VWDPort = "62323"
+		SlnRelativePath = "WebPortal\"
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediationServer", "MediationServer\MediationServer.csproj", "{03BF1717-8863-423E-A394-90420E203FE8}"
+EndProject
+Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "DAL", "DAL\DAL.sqlproj", "{DE9651DB-00BE-4890-8EED-85052362DF68}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BC2081C5-ED5B-4762-BAA9-6FF7EE08E7CB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BC2081C5-ED5B-4762-BAA9-6FF7EE08E7CB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BC2081C5-ED5B-4762-BAA9-6FF7EE08E7CB}.Release|Any CPU.ActiveCfg = Debug|Any CPU
+		{BC2081C5-ED5B-4762-BAA9-6FF7EE08E7CB}.Release|Any CPU.Build.0 = Debug|Any CPU
+		{03BF1717-8863-423E-A394-90420E203FE8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{03BF1717-8863-423E-A394-90420E203FE8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{03BF1717-8863-423E-A394-90420E203FE8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{03BF1717-8863-423E-A394-90420E203FE8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DE9651DB-00BE-4890-8EED-85052362DF68}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DE9651DB-00BE-4890-8EED-85052362DF68}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DE9651DB-00BE-4890-8EED-85052362DF68}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{DE9651DB-00BE-4890-8EED-85052362DF68}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DE9651DB-00BE-4890-8EED-85052362DF68}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DE9651DB-00BE-4890-8EED-85052362DF68}.Release|Any CPU.Deploy.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

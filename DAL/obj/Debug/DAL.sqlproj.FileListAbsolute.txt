@@ -1,0 +1,9 @@
+C:\Users\eviat\documents\visual studio 2015\Projects\MiniTorrent\DAL\bin\Debug\DAL.dacpac
+C:\Users\eviat\documents\visual studio 2015\Projects\MiniTorrent\DAL\bin\Debug\DAL.dll
+C:\Users\eviat\documents\visual studio 2015\Projects\MiniTorrent\DAL\bin\Debug\DAL.pdb
+C:\Users\eviat\documents\visual studio 2015\Projects\MiniTorrent\DAL\obj\Debug\DAL.dll
+C:\Users\eviat\documents\visual studio 2015\Projects\MiniTorrent\DAL\obj\Debug\DAL.pdb
+C:\Users\eviat\documents\visual studio 2015\Projects\MiniTorrent\DAL\obj\Debug\Model.xml
+C:\Users\eviat\documents\visual studio 2015\Projects\MiniTorrent\DAL\obj\Debug\refactor.xml
+C:\Users\eviat\documents\visual studio 2015\Projects\MiniTorrent\DAL\obj\Debug\postdeploy.sql
+C:\Users\eviat\documents\visual studio 2015\Projects\MiniTorrent\DAL\obj\Debug\predeploy.sql
