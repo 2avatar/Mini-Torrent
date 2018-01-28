@@ -30,4 +30,3 @@ C:\Users\eviat\Documents\Visual Studio 2015\Projects\MiniTorrent\MediationServer
 C:\Users\eviat\Documents\Visual Studio 2015\Projects\MiniTorrent\MediationServer\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
 C:\Users\eviat\Documents\Visual Studio 2015\Projects\MiniTorrent\MediationServer\obj\Debug\MediationServer.dll
 C:\Users\eviat\Documents\Visual Studio 2015\Projects\MiniTorrent\MediationServer\obj\Debug\MediationServer.pdb
-C:\Users\eviat\documents\visual studio 2015\Projects\MiniTorrent\MediationServer\obj\Debug\MediationServer.csprojResolveAssemblyReference.cache

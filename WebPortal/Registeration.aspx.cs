@@ -144,18 +144,18 @@ public partial class Registeration : System.Web.UI.Page
         allFieldsFilled = false;
     }
 
-    public string ComputeHash(string hash)
+    private string ComputeHash(string hash)
     {
         SHA256 sha256 = SHA256.Create();
         return byteToString(sha256.ComputeHash(stringToByte(hash)));
     }
 
-    public byte[] stringToByte(string buffer)
+    private byte[] stringToByte(string buffer)
     {
         return Encoding.UTF8.GetBytes(buffer);
     }
 
-    public string byteToString(byte[] buffer)
+    private string byteToString(byte[] buffer)
     {
         return BitConverter.ToString(buffer).Replace("-", "");
     }

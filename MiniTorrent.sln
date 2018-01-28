@@ -29,6 +29,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediationServer", "Mediatio
 EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "DAL", "DAL\DAL.sqlproj", "{DE9651DB-00BE-4890-8EED-85052362DF68}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test", "Test\Test.csproj", "{5E7216C9-480A-41B0-A023-9070E5693854}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -49,6 +51,10 @@ Global
 		{DE9651DB-00BE-4890-8EED-85052362DF68}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DE9651DB-00BE-4890-8EED-85052362DF68}.Release|Any CPU.Build.0 = Release|Any CPU
 		{DE9651DB-00BE-4890-8EED-85052362DF68}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{5E7216C9-480A-41B0-A023-9070E5693854}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5E7216C9-480A-41B0-A023-9070E5693854}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5E7216C9-480A-41B0-A023-9070E5693854}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5E7216C9-480A-41B0-A023-9070E5693854}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
