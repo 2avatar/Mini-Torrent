@@ -5,7 +5,6 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Web;
 using System.Xml;
-using MediationServer;
 
 namespace Test
 {
@@ -36,17 +35,19 @@ namespace Test
         // file number of active users
         private static string FILE_ATTRIBUTE_NUMBER_OF_ACTIVE_USERS = "NumberOfActiveUsers";
 
-        private static WebService ws = new WebService();
+        private static ServiceReference.WebServiceSoapClient ws = new ServiceReference.WebServiceSoapClient();
+          
         private static XmlDocument xmlDoc = new XmlDocument();
 
         public static void Main(string[] args)
         {
-            createUserElementXML("eviatar", "eviatar");
-            createFilesElementXML();
-            createFileElementXML("f1", "230");
-            createFileElementXML("f2", "350");
 
-            Console.WriteLine(ws.SignIn(xmlDoc.OuterXml));
+            createUserElementXML("admon", "admon");
+            createFilesElementXML();
+            createFileElementXML("f", "");
+           
+           
+            Console.WriteLine(ws.RequestFiles(xmlDoc.OuterXml));
         }
 
         private static void createUserElementXML(string username, string password)

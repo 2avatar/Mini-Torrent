@@ -1,1 +1,1 @@
-﻿<%@ WebService Language="C#" CodeBehind="WebService.asmx.cs" Class="MediationServer.WebService1" %>
+﻿<%@ WebService Language="C#" CodeBehind="WebService.asmx.cs" Class="MediationServer.WebService" %>

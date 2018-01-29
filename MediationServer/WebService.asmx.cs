@@ -20,7 +20,7 @@ namespace MediationServer
         // user create element
         private static string USER_ELEMENT = "User";
         // user retrieval path
-        private static string USER_PATH = "//"+ USER_ELEMENT;
+        private static string USER_PATH = "//" + USER_ELEMENT;
         // user attributes
         private static string USER_ATTRIBUTE_NAME = "Username";
         private static string USER_ATTRIBUTE_PASSWORD = "Password";
@@ -29,7 +29,7 @@ namespace MediationServer
         // file create element
         private static string FILE_ELEMENT = "File";
         // files retrieval path
-        private static string FILE_PATH = "//"+FILE_ELEMENT;
+        private static string FILE_PATH = "//" + FILE_ELEMENT;
         // file attributes
         private static string FILE_ATTRIBUTE_NAME = "Name";
         private static string FILE_ATTRIBUTE_SIZE = "Size";
@@ -39,6 +39,10 @@ namespace MediationServer
         [WebMethod]
         public bool SignIn(string xml)
         {
+    
+            if (string.IsNullOrEmpty(xml))
+                return false;
+
             if (!validateUser(xml))
                 return false;
 
@@ -89,6 +93,9 @@ namespace MediationServer
         [WebMethod]
         public string RequestFiles(string xml)
         {
+            if (string.IsNullOrEmpty(xml))
+                return null;
+
             if (!validateUser(xml))
                 return null;
 
@@ -156,6 +163,9 @@ namespace MediationServer
         [WebMethod]
         public bool SignOut(string xml)
         {
+               if (string.IsNullOrEmpty(xml))
+                return false;
+
             if (!validateUser(xml))
                 return false;
 
@@ -179,6 +189,7 @@ namespace MediationServer
             string password = getPassword(xml);
 
             var ds = new DataSetUsersTableAdapters.UsersTableAdapter();
+
             return ds.ValidateUser(username, password) == 1 ? true : false;
         }
 

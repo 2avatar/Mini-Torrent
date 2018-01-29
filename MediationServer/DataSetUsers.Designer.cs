@@ -466,7 +466,6 @@ namespace MediationServer {
                 base.Columns.Add(this.columnName);
                 this.columnSize = new global::System.Data.DataColumn("Size", typeof(int), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnSize);
-                this.columnUsername.AllowDBNull = false;
                 this.columnUsername.MaxLength = 50;
                 this.columnName.AllowDBNull = false;
                 this.columnName.MaxLength = 50;
@@ -905,7 +904,12 @@ namespace MediationServer {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public string Username {
                 get {
-                    return ((string)(this[this.tableFiles.UsernameColumn]));
+                    try {
+                        return ((string)(this[this.tableFiles.UsernameColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'Username\' in table \'Files\' is DBNull.", e);
+                    }
                 }
                 set {
                     this[this.tableFiles.UsernameColumn] = value;
@@ -943,6 +947,18 @@ namespace MediationServer {
                 set {
                     this.SetParentRow(value, this.Table.ParentRelations["FK_Files_Users"]);
                 }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsUsernameNull() {
+                return this.IsNull(this.tableFiles.UsernameColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetUsernameNull() {
+                this[this.tableFiles.UsernameColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -1235,15 +1251,15 @@ namespace MediationServer.DataSetUsersTableAdapters {
             this._commandCollection[2] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[2].Connection = this.Connection;
             this._commandCollection[2].CommandText = "SELECT COUNT(*) AS Expr1\r\nFROM     Files INNER JOIN\r\n                  Users ON F" +
-                "iles.Username = Users.Username\r\nWHERE  (Files.Name = @File_Name) AND (Users.Acti" +
-                "ve = 1)";
+                "iles.Username = Users.Username\r\nWHERE  (Users.Active = 1) AND (Files.Name = @Fil" +
+                "eName)";
             this._commandCollection[2].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@File_Name", global::System.Data.SqlDbType.VarChar, 50, global::System.Data.ParameterDirection.Input, 0, 0, "Name", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@FileName", global::System.Data.SqlDbType.VarChar, 50, global::System.Data.ParameterDirection.Input, 0, 0, "Name", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._commandCollection[3] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[3].Connection = this.Connection;
-            this._commandCollection[3].CommandText = "SELECT DISTINCT Name, Size\r\nFROM     Files\r\nWHERE  (Name LIKE @File_Name + \'%\')";
+            this._commandCollection[3].CommandText = "SELECT DISTINCT Name, Size\r\nFROM     Files\r\nWHERE  (Name LIKE @Name + \'%\')";
             this._commandCollection[3].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@File_Name", global::System.Data.SqlDbType.VarChar, 50, global::System.Data.ParameterDirection.Input, 0, 0, "Name", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Name", global::System.Data.SqlDbType.VarChar, 50, global::System.Data.ParameterDirection.Input, 0, 0, "Name", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1274,13 +1290,13 @@ namespace MediationServer.DataSetUsersTableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, false)]
-        public virtual DataSetUsers.FilesDataTable GetFilesByName(string File_Name) {
+        public virtual DataSetUsers.FilesDataTable GetFilesByName(string Name) {
             this.Adapter.SelectCommand = this.CommandCollection[3];
-            if ((File_Name == null)) {
-                throw new global::System.ArgumentNullException("File_Name");
+            if ((Name == null)) {
+                throw new global::System.ArgumentNullException("Name");
             }
             else {
-                this.Adapter.SelectCommand.Parameters[0].Value = ((string)(File_Name));
+                this.Adapter.SelectCommand.Parameters[0].Value = ((string)(Name));
             }
             DataSetUsers.FilesDataTable dataTable = new DataSetUsers.FilesDataTable();
             this.Adapter.Fill(dataTable);
@@ -1322,7 +1338,7 @@ namespace MediationServer.DataSetUsersTableAdapters {
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
         public virtual int Insert(string Username, string Name, int Size) {
             if ((Username == null)) {
-                throw new global::System.ArgumentNullException("Username");
+                this.Adapter.InsertCommand.Parameters[0].Value = global::System.DBNull.Value;
             }
             else {
                 this.Adapter.InsertCommand.Parameters[0].Value = ((string)(Username));
@@ -1357,7 +1373,7 @@ namespace MediationServer.DataSetUsersTableAdapters {
         public virtual int DeleteUserFiles(string Username) {
             global::System.Data.SqlClient.SqlCommand command = this.CommandCollection[1];
             if ((Username == null)) {
-                throw new global::System.ArgumentNullException("Username");
+                command.Parameters[0].Value = global::System.DBNull.Value;
             }
             else {
                 command.Parameters[0].Value = ((string)(Username));
@@ -1382,13 +1398,13 @@ namespace MediationServer.DataSetUsersTableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual global::System.Nullable<int> GetFileNumberOfActiveUsers(string File_Name) {
+        public virtual global::System.Nullable<int> GetFileNumberOfActiveUsers(string FileName) {
             global::System.Data.SqlClient.SqlCommand command = this.CommandCollection[2];
-            if ((File_Name == null)) {
-                throw new global::System.ArgumentNullException("File_Name");
+            if ((FileName == null)) {
+                throw new global::System.ArgumentNullException("FileName");
             }
             else {
-                command.Parameters[0].Value = ((string)(File_Name));
+                command.Parameters[0].Value = ((string)(FileName));
             }
             global::System.Data.ConnectionState previousConnectionState = command.Connection.State;
             if (((command.Connection.State & global::System.Data.ConnectionState.Open) 
@@ -1573,7 +1589,7 @@ namespace MediationServer.DataSetUsersTableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitCommandCollection() {
-            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[5];
+            this._commandCollection = new global::System.Data.SqlClient.SqlCommand[4];
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "SELECT Username, Password, Active FROM dbo.Users";
@@ -1590,16 +1606,11 @@ namespace MediationServer.DataSetUsersTableAdapters {
             this._commandCollection[2].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Username", global::System.Data.SqlDbType.VarChar, 50, global::System.Data.ParameterDirection.Input, 0, 0, "Username", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._commandCollection[3] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[3].Connection = this.Connection;
-            this._commandCollection[3].CommandText = "SELECT Active\r\nFROM     Users\r\nWHERE  (Username = @Username)";
+            this._commandCollection[3].CommandText = "SELECT COUNT(*) FROM Users WHERE Username = (@Username) AND Password = (@Password" +
+                ")";
             this._commandCollection[3].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Username", global::System.Data.SqlDbType.VarChar, 50, global::System.Data.ParameterDirection.Input, 0, 0, "Username", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[4] = new global::System.Data.SqlClient.SqlCommand();
-            this._commandCollection[4].Connection = this.Connection;
-            this._commandCollection[4].CommandText = "SELECT COUNT(*) AS Expr1\r\nFROM     Users\r\nWHERE  (Username = @Username) AND (Pass" +
-                "word = @Password)";
-            this._commandCollection[4].CommandType = global::System.Data.CommandType.Text;
-            this._commandCollection[4].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Username", global::System.Data.SqlDbType.VarChar, 50, global::System.Data.ParameterDirection.Input, 0, 0, "Username", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
-            this._commandCollection[4].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Password", global::System.Data.SqlDbType.VarChar, 500, global::System.Data.ParameterDirection.Input, 0, 0, "Password", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[3].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Password", global::System.Data.SqlDbType.VarChar, 500, global::System.Data.ParameterDirection.Input, 0, 0, "Password", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1825,42 +1836,8 @@ namespace MediationServer.DataSetUsersTableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual global::System.Nullable<bool> IsUserActive(string Username) {
-            global::System.Data.SqlClient.SqlCommand command = this.CommandCollection[3];
-            if ((Username == null)) {
-                throw new global::System.ArgumentNullException("Username");
-            }
-            else {
-                command.Parameters[0].Value = ((string)(Username));
-            }
-            global::System.Data.ConnectionState previousConnectionState = command.Connection.State;
-            if (((command.Connection.State & global::System.Data.ConnectionState.Open) 
-                        != global::System.Data.ConnectionState.Open)) {
-                command.Connection.Open();
-            }
-            object returnValue;
-            try {
-                returnValue = command.ExecuteScalar();
-            }
-            finally {
-                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
-                    command.Connection.Close();
-                }
-            }
-            if (((returnValue == null) 
-                        || (returnValue.GetType() == typeof(global::System.DBNull)))) {
-                return new global::System.Nullable<bool>();
-            }
-            else {
-                return new global::System.Nullable<bool>(((bool)(returnValue)));
-            }
-        }
-        
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
-        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         public virtual global::System.Nullable<int> ValidateUser(string Username, string Password) {
-            global::System.Data.SqlClient.SqlCommand command = this.CommandCollection[4];
+            global::System.Data.SqlClient.SqlCommand command = this.CommandCollection[3];
             if ((Username == null)) {
                 throw new global::System.ArgumentNullException("Username");
             }
