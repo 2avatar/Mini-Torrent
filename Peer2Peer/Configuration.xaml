@@ -1,0 +1,68 @@
+﻿<Window x:Class="Peer2Peer.Configuration"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Peer2Peer"
+        mc:Ignorable="d"
+        Title="MiniTorrent" Height="400" Width="525">
+
+    <Grid>
+
+        <Grid.Background>
+            <ImageBrush ImageSource="C:\Users\eviat\Documents\Visual Studio 2015\Projects\MiniTorrent\torrentmain.jpg" Stretch="UniformToFill"/>
+        </Grid.Background>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height = "*" />
+            <RowDefinition Height = "*" />
+            <RowDefinition Height = "*" />
+            <RowDefinition Height = "*" />
+            <RowDefinition Height = "*" />
+            <RowDefinition Height = "*" />
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width = "400" />
+            <ColumnDefinition Width = "*" />
+        </Grid.ColumnDefinitions>
+
+        <Label Content = "Configuration" FontSize = "15"
+         FontWeight = "Bold" Grid.Column = "0" Grid.Row = "0"/>
+
+        <Button Width="70" VerticalAlignment = "Center" Content="SignIn" Grid.Column = "1" Grid.Row = "0" Click="Button_Click_1"/>
+
+        <StackPanel Grid.Column = "0" Grid.Row = "1" Orientation = "Horizontal">
+            <Label Content = "Username" FontWeight="Bold"  VerticalAlignment = "Center" Width = "70"/>
+            <TextBox Text = "{Binding Username, Mode = TwoWay}" VerticalAlignment = "Center"
+            Width = "100">
+            </TextBox>
+        </StackPanel>
+
+        <StackPanel Grid.Column = "0" Grid.Row = "2" Orientation = "Horizontal">
+            <Label Content = "Password" FontWeight="Bold" VerticalAlignment = "Center" Width = "70"/>
+            <PasswordBox Name = "txtPassword" VerticalAlignment = "Center"
+            Width = "100">
+            </PasswordBox>
+        </StackPanel>
+
+        <StackPanel Grid.Column = "0" Grid.Row = "3" Orientation = "Horizontal">
+            <Label Content = "IP" FontWeight="Bold" VerticalAlignment = "Center" Width = "70"/>
+            <TextBox  Text = "{Binding IP, Mode = TwoWay}" VerticalAlignment = "Center"
+            Width = "100"></TextBox>
+        </StackPanel>
+
+        <StackPanel Grid.Column = "0" Grid.Row = "4" Orientation = "Horizontal">
+            <Label Content = "PORT" FontWeight="Bold" VerticalAlignment = "Center" Width = "70"/>
+            <TextBox Text = "{Binding PORT, Mode = TwoWay}" VerticalAlignment = "Center"
+            Width = "100"></TextBox>
+        </StackPanel>
+
+        <StackPanel Grid.Column = "0" Grid.Row = "5" Orientation = "Horizontal">
+            <Label Content = "Files Path" FontWeight="Bold" VerticalAlignment = "Center" Width = "70"/>
+            <Button Width="70" VerticalAlignment = "Center" Content="Folder" Click="Button_Click" />
+            <Label Content = "Path: " FontWeight="Bold" Name="LabelPath" VerticalAlignment = "Center" Width = "367" />
+        </StackPanel>
+
+    </Grid>
+</Window>

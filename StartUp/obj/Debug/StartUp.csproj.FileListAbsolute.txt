@@ -1,0 +1,14 @@
+C:\Users\eviat\documents\visual studio 2015\Projects\MiniTorrent\StartUp\bin\Debug\StartUp.exe.config
+C:\Users\eviat\documents\visual studio 2015\Projects\MiniTorrent\StartUp\bin\Debug\StartUp.exe
+C:\Users\eviat\documents\visual studio 2015\Projects\MiniTorrent\StartUp\bin\Debug\StartUp.pdb
+C:\Users\eviat\documents\visual studio 2015\Projects\MiniTorrent\StartUp\obj\Debug\MainWindow.g.cs
+C:\Users\eviat\documents\visual studio 2015\Projects\MiniTorrent\StartUp\obj\Debug\App.g.cs
+C:\Users\eviat\documents\visual studio 2015\Projects\MiniTorrent\StartUp\obj\Debug\StartUp_MarkupCompile.cache
+C:\Users\eviat\documents\visual studio 2015\Projects\MiniTorrent\StartUp\obj\Debug\StartUp_MarkupCompile.lref
+C:\Users\eviat\documents\visual studio 2015\Projects\MiniTorrent\StartUp\obj\Debug\MainWindow.baml
+C:\Users\eviat\documents\visual studio 2015\Projects\MiniTorrent\StartUp\obj\Debug\StartUp.g.resources
+C:\Users\eviat\documents\visual studio 2015\Projects\MiniTorrent\StartUp\obj\Debug\StartUp.Properties.Resources.resources
+C:\Users\eviat\documents\visual studio 2015\Projects\MiniTorrent\StartUp\obj\Debug\StartUp.csproj.GenerateResource.Cache
+C:\Users\eviat\documents\visual studio 2015\Projects\MiniTorrent\StartUp\obj\Debug\StartUp.exe
+C:\Users\eviat\documents\visual studio 2015\Projects\MiniTorrent\StartUp\obj\Debug\StartUp.pdb
+C:\Users\eviat\documents\visual studio 2015\Projects\MiniTorrent\StartUp\obj\Debug\StartUp.csprojResolveAssemblyReference.cache
