@@ -67,7 +67,6 @@
     <Compile Include="Peer.cs" />
     <Compile Include="Reciever.cs" />
     <Compile Include="Sender.cs" />
-    <Compile Include="StateObject.cs" />
     <Compile Include="Torrent.xaml.cs">
       <DependentUpon>Torrent.xaml</DependentUpon>
     </Compile>

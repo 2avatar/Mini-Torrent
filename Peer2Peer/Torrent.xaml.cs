@@ -30,8 +30,13 @@ namespace Peer2Peer
         {         
             InitializeComponent();
 
-            AsynchronousClient.SharedFolderPath = user.FolderPath;
-            AsynchronousSocketListener.DownloadFolderPath = user.FolderPath;
+            Client.SharedFolderPath = user.FolderPath;
+            SocketListener.SharedFolderPath = user.FolderPath;
+            SocketListener.UI = this;
+
+            Thread t = new Thread(x => SocketListener.StartListening(User.PORT));
+            t.IsBackground = true;
+            t.Start();
 
             this.User = user;
             startPeer();
@@ -39,8 +44,6 @@ namespace Peer2Peer
 
         private void startPeer()
         {
-
-
 
             peer = new Peer(User);
             peerThread = new Thread(peer.Run) { IsBackground = true };
@@ -81,6 +84,11 @@ namespace Peer2Peer
 
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
+            requestFiles();
+        }
+
+        private void requestFiles()
+        {
             // request file
 
             string fileName = requestFileTxtBox.Text;
@@ -94,7 +102,7 @@ namespace Peer2Peer
 
             string respond = ws.RequestFiles(userXML.getXMLFormatToString());
             if (respond != null)
-            {               
+            {
                 UserXML listOfFilesXML = new UserXML(respond);
 
                 listOfFiles = listOfFilesXML.getFilesListWithNumberOfActiveUsers();
@@ -114,23 +122,38 @@ namespace Peer2Peer
 
                 UserXML.File file = (UserXML.File)listView.SelectedItem;
 
-                AsynchronousSocketListener.FileNameToRequest = file.FileName;
+                if (file != null)
+                {
+                    SocketListener.FileNameToRequest = file.FileName;
 
-                MediationServer.WebService ws = new MediationServer.WebService();
+                    MediationServer.WebService ws = new MediationServer.WebService();
 
-                string targetPeerUsername = ws.GetNameByFilename(file.FileName);
+                    string targetPeerUsername = ws.GetNameByFilename(file.FileName);
 
-                Thread t = new Thread(x => AsynchronousSocketListener.StartListening(User.PORT));
-                t.IsBackground = true;
-                t.Start();             
-                peer.Channel.BroadcastPeerToConnect(User.Username, targetPeerUsername);
-                AsynchronousSocketListener.StartClient(User.IP, User.PORT);
+                    peer.Channel.BroadcastPeerToConnect(User.Username, targetPeerUsername);
+                }
+                
 
             }
             else
             {
                 MessageBox.Show("Please select an item");
             }
+        }
+
+        private double progress = 4;
+        public void SetProgressLength(int len)
+        {
+            progress = 100 / len;
+            progressBar.Minimum = 0;
+            progressBar.Maximum = 100;
+            progressBar.Value = 0;
+            //progressBar.Step = 1;
+        }
+
+        public void ProgressChanged()
+        {
+            progressBar.Value += progress;
         }
     }
 }

@@ -53,6 +53,7 @@
 
         <StackPanel Grid.Column = "0" Grid.Row = "3" Orientation = "Horizontal">
             <ProgressBar Width="300" Height="20" Name="progressBar" VerticalAlignment="Center"/>
+            <TextBlock Text="{Binding ElementName=progressBar, Path=Value, StringFormat={}{0:0}%}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="0,17,0,16.6" Width="29" />
             <Button Width="70" Margin="10,0,0,0"  VerticalAlignment = "Center" Content="Download" Click="Button_Click_2"/>
 
         </StackPanel>

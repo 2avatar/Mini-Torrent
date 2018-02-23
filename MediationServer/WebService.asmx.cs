@@ -48,7 +48,7 @@ namespace MediationServer
             ds.ActivateUser(username);
         }
 
-        private void updateFiles(User user)
+        public void updateFiles(User user)
         {
             string username = user.getUsername();
             List<User.File> files = user.getFilesList();

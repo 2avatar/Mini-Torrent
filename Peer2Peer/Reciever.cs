@@ -7,17 +7,29 @@ using System.Threading;
 
 namespace Peer2Peer
 {
-
-    public static class AsynchronousSocketListener
+    public class SocketListener
     {
-        // Thread signal.  
-        private static ManualResetEvent allDone = new ManualResetEvent(false);
-        private static ManualResetEvent sendDone = new ManualResetEvent(false);
-        private static ManualResetEvent receiveDone = new ManualResetEvent(false);
-        private static AutoResetEvent connectDone = new AutoResetEvent(false);
+        class StateObject
+        {
+            public Socket WorkSocket = null;
 
-        public static string DownloadFolderPath { get; set; }
+            public const int BufferSize = 5242880;
+
+            public byte[] Buffer = new byte[BufferSize];
+
+            public bool Connected = false;
+        }
+
+        private static ManualResetEvent receiveDone =
+            new ManualResetEvent(false);
+
+        private delegate void SetProgressLengthHandler(int len);
+        private delegate void ProgressChangeHandler();
+
+        public static Torrent UI { get; set; }
+
         public static string FileNameToRequest { get; set; }
+        public static string SharedFolderPath { get; set; }
 
         private static string fileName;
         private static string fileSavePath = "C:/";
@@ -45,118 +57,60 @@ namespace Peer2Peer
                 listener.Bind(localEndPoint);
                 listener.Listen(100);
 
-                // Set the event to nonsignaled state.  
-                allDone.Reset();
 
-                // Start an asynchronous socket to listen for connections.  
+                while (true)
+                {
+                    // Set the event to nonsignaled state.  
+                    // Start an asynchronous socket to listen for connections.  
+                    Socket handler = listener.Accept();
 
-                listener.BeginAccept(
-                    new AsyncCallback(AcceptCallback),
-                    listener);
+                    requestFile(handler, FileNameToRequest);
 
-                // Wait until a connection is made before continuing.  
-                allDone.WaitOne();
+                    Receive(handler);
+                    receiveDone.WaitOne();
 
+                }
             }
             catch (Exception e)
             {
                 Console.WriteLine(e.ToString());
             }
-        }
-
-        public static void StartClient(string ip, string port)
-        {
-
-
-            IPEndPoint remoteEP = new IPEndPoint(IPAddress.Parse(ip), int.Parse(port));
-            // Use IPv4 as the network protocol,if you want to support IPV6 protocol, you can update here.
-            Socket clientSocket = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
-
-            // Begin to connect the server.
-            clientSocket.BeginConnect(remoteEP, new AsyncCallback(ConnectCallback), clientSocket);
-            connectDone.WaitOne();
-
-
-            // Begin to receive the file after connecting to server successfully.
-            Receive(clientSocket);
-            receiveDone.WaitOne();
-
-            // Notify the user whether receive the file completely.
-            //    Client.BeginInvoke(new FileReceiveDoneHandler(Client.FileReceiveDone));
-
-            // Close the socket.
-            clientSocket.Shutdown(SocketShutdown.Both);
-            clientSocket.Close();
-        }
-
-        private static void ConnectCallback(IAsyncResult ar)
-        {
-            try
-            {
-                Socket clientSocket = (Socket)ar.AsyncState;
-
-                clientSocket.EndConnect(ar);
-            }
-            catch
-            {
-                //        MessageBox.Show(Properties.Resources.InvalidConnectionMsg);
-                //       Client.BeginInvoke(new EnableConnectButtonHandler(Client.EnableConnectButton));
-                connectDone.Set();
-                return;
-            }
-
-            //     Client.BeginInvoke(new ConnectDoneHandler(Client.ConnectDone));
-
-            connectDone.Set();
-        }
-
-        private static void AcceptCallback(IAsyncResult ar)
-        {
-            // Signal the main thread to continue.  
-            allDone.Set();
-
-            // Get the socket that handles the client request.  
-            Socket listener = (Socket)ar.AsyncState;
-            Socket handler = listener.EndAccept(ar);
-
-            // Create the state object.  
-            StateObject1 state = new StateObject1();
-            state.WorkSocket = handler;
-
-            requestFile(handler, FileNameToRequest);
-            sendDone.WaitOne();
-
-            handler.Shutdown(SocketShutdown.Both);
-            handler.Close();
         }
 
         private static void requestFile(Socket handler, String data)
         {
             // Convert the string data to byte data using ASCII encoding.  
-            byte[] byteData = Encoding.ASCII.GetBytes(data);
+            byte[] byteData = Encoding.ASCII.GetBytes(data + "<EOF>");
 
             // Begin sending the data to the remote device.  
-            handler.BeginSend(byteData, 0, byteData.Length, 0,
-                new AsyncCallback(SendCallback), handler);
+            handler.Send(byteData);
         }
 
-        private static void SendCallback(IAsyncResult ar)
+        private static void Receive(Socket clientSocket)
         {
+            StateObject state = new StateObject();
+            state.WorkSocket = clientSocket;
+
+            ReceiveFileInfo(clientSocket);
+
+            int progressLen = checked((int)(fileLen / StateObject.BufferSize + 1));
+            object[] length = new object[1];
+            length[0] = progressLen;
+            UI.Dispatcher.BeginInvoke(new SetProgressLengthHandler(UI.SetProgressLength), length);
+
+            //     Client.BeginInvoke(new SetProgressLengthHandler(Client.SetProgressLength), length);
+
+            // Begin to receive the file from the server.
             try
             {
-                // Retrieve the socket from the state object.  
-                Socket handler = (Socket)ar.AsyncState;
-
-                // Complete sending the data to the remote device.  
-                int bytesSent = handler.EndSend(ar);
-
-
-                sendDone.Set();
-
+                clientSocket.BeginReceive(state.Buffer, 0, StateObject.BufferSize, 0, new AsyncCallback(ReceiveCallback), state);
             }
-            catch (Exception e)
+            catch
             {
-                Console.WriteLine(e.ToString());
+                if (!clientSocket.Connected)
+                {
+                    HandleDisconnectException();
+                }
             }
         }
 
@@ -194,7 +148,7 @@ namespace Peer2Peer
 
             fileName = Encoding.ASCII.GetString(fileNameByte, 0, fileNameLen);
 
-            fileSavePath = DownloadFolderPath + "/" + fileName;
+            fileSavePath = SharedFolderPath + "/" + fileName;
 
             // Get the file length from the server.
             byte[] fileLenByte = new byte[8];
@@ -202,43 +156,11 @@ namespace Peer2Peer
             fileLen = BitConverter.ToInt64(fileLenByte, 0);
         }
 
-        /// <summary>
-        /// Receive the file send by the server.
-        /// </summary>
-        /// <param name="clientSocket"></param>
-        private static void Receive(Socket clientSocket)
-        {
-            StateObject1 state = new StateObject1();
-            state.WorkSocket = clientSocket;
 
-            ReceiveFileInfo(clientSocket);
 
-            int progressLen = checked((int)(fileLen / StateObject1.BufferSize + 1));
-            object[] length = new object[1];
-            length[0] = progressLen;
-            //     Client.BeginInvoke(new SetProgressLengthHandler(Client.SetProgressLength), length);
-
-            // Begin to receive the file from the server.
-            try
-            {
-                clientSocket.BeginReceive(state.Buffer, 0, StateObject1.BufferSize, 0, new AsyncCallback(ReceiveCallback), state);
-            }
-            catch
-            {
-                if (!clientSocket.Connected)
-                {
-                    HandleDisconnectException();
-                }
-            }
-        }
-
-        /// <summary>
-        /// Callback when receive a file chunk from the server successfully.
-        /// </summary>
-        /// <param name="ar"></param>
         private static void ReceiveCallback(IAsyncResult ar)
         {
-            StateObject1 state = (StateObject1)ar.AsyncState;
+            StateObject state = (StateObject)ar.AsyncState;
             Socket clientSocket = state.WorkSocket;
             BinaryWriter writer;
 
@@ -260,12 +182,12 @@ namespace Peer2Peer
                 writer.Close();
 
                 // Notify the progressBar to change the position.
-                //   Client.BeginInvoke(new ProgressChangeHandler(Client.ProgressChanged));
+                     UI.Dispatcher.BeginInvoke(new ProgressChangeHandler(UI.ProgressChanged));
 
                 // Recursively receive the rest file.
                 try
                 {
-                    clientSocket.BeginReceive(state.Buffer, 0, StateObject1.BufferSize, 0, new AsyncCallback(ReceiveCallback), state);
+                    clientSocket.BeginReceive(state.Buffer, 0, StateObject.BufferSize, 0, new AsyncCallback(ReceiveCallback), state);
                 }
                 catch
                 {
@@ -289,13 +211,5 @@ namespace Peer2Peer
             // Thread.CurrentThread.Abort();
         }
 
-        //public static int Main(String[] args)
-        //{
-        //    AsynchronousSocketListener.DownloadFolderPath = "";
-        //    AsynchronousSocketListener.FileNameToRequest = "";
-        //    StartListening("8001");
-        //    StartClient("127.0.0.1", "8002");
-        //    return 0;
-        //}
     }
 }

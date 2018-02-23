@@ -14,24 +14,43 @@ namespace Peer2Peer
     //Contruct
     [ServiceContract(CallbackContract = typeof(IPing1))]
     public interface IPing1
-    {
+    {     
         [OperationContract(IsOneWay = true)]
         void BroadcastAddSocket(UserDataBinding user);
+        [OperationContract(IsOneWay = true)]
+        void BroadcastNewUser(UserDataBinding user);
         [OperationContract(IsOneWay = true)]
         void BroadcastRemoveSocket(UserDataBinding user);
         [OperationContract(IsOneWay = true)]
         void BroadcastPeerToConnect(string myPeer, string otherPeer);
-
     }
+
     // Implementatiom
     public class PingImplementation : IPing1
     {
+        
         private List<UserDataBinding> allHosts = new List<UserDataBinding>();
         public UserDataBinding MyHost { get; set; }
+        public IPing1 myChannel { private get; set; }
       
         public void BroadcastAddSocket(UserDataBinding user)
         {
-            allHosts.Add(user);
+            if (!allHosts.Exists(x => x.Username == user.Username))
+                allHosts.Add(user);
+
+                myChannel.BroadcastNewUser(MyHost);
+        }
+
+        public void BroadcastNewUser(UserDataBinding user)
+        {
+            if (!allHosts.Exists(x => x.Username == user.Username))
+                allHosts.Add(user);
+
+            Console.WriteLine(allHosts.Count);
+            foreach (UserDataBinding u in allHosts)
+            {
+                Console.WriteLine(u.Username);
+            }
         }
 
         public void BroadcastRemoveSocket(UserDataBinding user)
@@ -50,9 +69,7 @@ namespace Peer2Peer
 
         private void connectClient(UserDataBinding user)
         {
-
-            AsynchronousClient.StartClient(MyHost.IP, user.PORT);
-            AsynchronousClient.StartListening(user.PORT);
+            Client.StartClient(MyHost.IP, user.PORT);         
         }
     }
     //Open Peer
@@ -81,6 +98,7 @@ namespace Peer2Peer
 
             Host = new PingImplementation();
             Host.MyHost = User;
+           
 
             _factory = new System.ServiceModel.DuplexChannelFactory<IPing1>(new InstanceContext(Host), endpoint);
 
@@ -90,6 +108,7 @@ namespace Peer2Peer
 
             // wait until after the channel is open to allow access.
             Channel = channel;
+            Host.myChannel = Channel;
         }
         private DuplexChannelFactory<IPing1> _factory;
 
