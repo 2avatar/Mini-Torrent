@@ -16,9 +16,15 @@ namespace Peer2Peer
         private static ManualResetEvent sendDone =
             new ManualResetEvent(false);
 
+        private delegate void UploadChangeHandler(int bytesRead, long time);
+
+        public static Torrent UI { get; set; }
+
         public static string SharedFolderPath { get; set; }
         private static string FileName { get; set; }
         private static string FileToSend { get; set; }
+
+        private static long millisecondsStart, millisecondDuring;
 
         public static void StartClient(string ip, string port)
         {
@@ -93,6 +99,8 @@ namespace Peer2Peer
             // Send file information to the clients.
             SendFileInfo(client);
 
+            millisecondsStart = DateTime.Now.Ticks / TimeSpan.TicksPerMillisecond;
+
             // Blocking read file and send to the clients asynchronously.
             using (FileStream stream = new FileStream(FileToSend, FileMode.Open))
             {
@@ -102,6 +110,7 @@ namespace Peer2Peer
                     stream.Flush();
                     readBytes = stream.Read(buffer, 0, c_bufferSize);
 
+                    
                     client.BeginSend(buffer, 0, readBytes, SocketFlags.None, new AsyncCallback(SendCallback), client);
 
                 } while (readBytes > 0);
@@ -120,6 +129,11 @@ namespace Peer2Peer
                 handler = (Socket)ar.AsyncState;
                 int bytesSent = handler.EndSend(ar);
 
+                millisecondDuring = DateTime.Now.Ticks / TimeSpan.TicksPerMillisecond;
+                long timeInMilliseconds = millisecondDuring - millisecondsStart;
+                UI.Dispatcher.BeginInvoke(new UploadChangeHandler(UI.UploadChanged), bytesSent, timeInMilliseconds);
+
+
                 // Close the socket when all the data has sent to the client.
                 if (bytesSent == 0)
                 {
@@ -136,6 +150,10 @@ namespace Peer2Peer
                 // Close the socket if the client disconnected.
                 handler.Shutdown(SocketShutdown.Both);
                 handler.Close();
+            }
+            catch (ObjectDisposedException)
+            {
+
             }
             finally
             {

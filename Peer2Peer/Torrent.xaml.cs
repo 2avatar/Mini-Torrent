@@ -31,6 +31,7 @@ namespace Peer2Peer
             InitializeComponent();
 
             Client.SharedFolderPath = user.FolderPath;
+            Client.UI = this;
             SocketListener.SharedFolderPath = user.FolderPath;
             SocketListener.UI = this;
 
@@ -38,13 +39,20 @@ namespace Peer2Peer
             t.IsBackground = true;
             t.Start();
 
+            listView.SelectionChanged += onSelectionChanged;
+
             this.User = user;
             startPeer();
         }
 
+        public void onSelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            progressBar.Value = 0;
+            labelDownload.Content = "";
+        }
+
         private void startPeer()
         {
-
             peer = new Peer(User);
             peerThread = new Thread(peer.Run) { IsBackground = true };
             peerThread.Start();
@@ -70,7 +78,13 @@ namespace Peer2Peer
         {
             // sign out
             stopPeer();
+            signOut(false);
 
+
+        }
+
+        private void signOut(bool isClosed)
+        {
             MediationServer.WebService ws = new MediationServer.WebService();
 
             UserXML userXML = new UserXML(User.Username, User.Password);
@@ -78,6 +92,7 @@ namespace Peer2Peer
             {
                 Configuration mainWindow = new Configuration();
                 mainWindow.Show();
+                if (!isClosed)
                 this.Close();
             }
         }
@@ -112,6 +127,8 @@ namespace Peer2Peer
             else
             {
                 MessageBox.Show("File not exists");
+                listView.ItemsSource = null;
+                listView.Items.Clear();
             }
         }
 
@@ -121,7 +138,7 @@ namespace Peer2Peer
             if (listView.HasItems) {
 
                 UserXML.File file = (UserXML.File)listView.SelectedItem;
-
+              
                 if (file != null)
                 {
                     SocketListener.FileNameToRequest = file.FileName;
@@ -132,8 +149,6 @@ namespace Peer2Peer
 
                     peer.Channel.BroadcastPeerToConnect(User.Username, targetPeerUsername);
                 }
-                
-
             }
             else
             {
@@ -151,9 +166,31 @@ namespace Peer2Peer
             //progressBar.Step = 1;
         }
 
-        public void ProgressChanged()
+        public void ProgressChanged(int bytesRead, long timeInMilliseconds)
         {
+            double timeInSeconds = timeInMilliseconds * 0.001;
+            double kiloBits = bytesRead * 0.008;
+            double transferRate = Math.Round(kiloBits / timeInSeconds, 2);
+            labelDownload.Content = "Download: \n"+
+                                    "Speed: " + transferRate + " Kbps\n"+
+                            "Time: " + timeInSeconds + "s";
             progressBar.Value += progress;
+        }
+
+        public void UploadChanged(int bytesRead, long timeInMilliseconds)
+        {
+            double timeInSeconds = timeInMilliseconds * 0.001;
+            double kiloBits = bytesRead * 0.008;
+            double transferRate = Math.Round(kiloBits / timeInSeconds, 2);
+            labelUpload.Content = "Upload: \n"+
+                "Speed: " + transferRate + " Kbps";
+           
+        }
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
+        {
+            stopPeer();
+            signOut(true);
         }
     }
 }

@@ -24,7 +24,7 @@ namespace Peer2Peer
             new ManualResetEvent(false);
 
         private delegate void SetProgressLengthHandler(int len);
-        private delegate void ProgressChangeHandler();
+        private delegate void ProgressChangeHandler(int bytesRead, long time);
 
         public static Torrent UI { get; set; }
 
@@ -34,6 +34,7 @@ namespace Peer2Peer
         private static string fileName;
         private static string fileSavePath = "C:/";
         private static long fileLen;
+        private static long millisecondsStart, millisecondDuring;
 
         public static void StartListening(string port)
         {
@@ -96,6 +97,7 @@ namespace Peer2Peer
             int progressLen = checked((int)(fileLen / StateObject.BufferSize + 1));
             object[] length = new object[1];
             length[0] = progressLen;
+            millisecondsStart = DateTime.Now.Ticks / TimeSpan.TicksPerMillisecond;
             UI.Dispatcher.BeginInvoke(new SetProgressLengthHandler(UI.SetProgressLength), length);
 
             //     Client.BeginInvoke(new SetProgressLengthHandler(Client.SetProgressLength), length);
@@ -157,32 +159,48 @@ namespace Peer2Peer
         }
 
 
-
         private static void ReceiveCallback(IAsyncResult ar)
         {
+
             StateObject state = (StateObject)ar.AsyncState;
             Socket clientSocket = state.WorkSocket;
-            BinaryWriter writer;
+
 
             int bytesRead = clientSocket.EndReceive(ar);
+
             if (bytesRead > 0)
             {
                 //If the file doesn't exist, create a file with the filename got from server. If the file exists, append to the file.
-                if (!File.Exists(fileSavePath))
-                {
-                    writer = new BinaryWriter(File.Open(fileSavePath, FileMode.Create));
-                }
-                else
-                {
-                    writer = new BinaryWriter(File.Open(fileSavePath, FileMode.Append));
-                }
 
-                writer.Write(state.Buffer, 0, bytesRead);
-                writer.Flush();
-                writer.Close();
-
+                try
+                {
+                    if (!File.Exists(fileSavePath))
+                    {
+                        using (BinaryWriter writer = new BinaryWriter(File.Open(fileSavePath, FileMode.Append)))
+                        {
+                            writer.Write(state.Buffer, 0, bytesRead);
+                            writer.Flush();
+                            writer.Close();
+                        }
+                    }
+                    else
+                    {
+                        using (BinaryWriter writer = new BinaryWriter(File.Open(fileSavePath, FileMode.Append)))
+                        {
+                            writer.Write(state.Buffer, 0, bytesRead);
+                            writer.Flush();
+                            writer.Close();
+                        }
+                    }
+                }
+                catch (IOException e)
+                {
+                    Console.WriteLine(e.ToString());
+                }
                 // Notify the progressBar to change the position.
-                     UI.Dispatcher.BeginInvoke(new ProgressChangeHandler(UI.ProgressChanged));
+                millisecondDuring = DateTime.Now.Ticks / TimeSpan.TicksPerMillisecond;
+                long timeInMilliseconds = millisecondDuring - millisecondsStart;
+                UI.Dispatcher.BeginInvoke(new ProgressChangeHandler(UI.ProgressChanged), bytesRead, timeInMilliseconds);
 
                 // Recursively receive the rest file.
                 try
