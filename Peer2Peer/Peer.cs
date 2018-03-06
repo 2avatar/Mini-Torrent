@@ -14,7 +14,7 @@ namespace Peer2Peer
     //Contruct
     [ServiceContract(CallbackContract = typeof(IPing1))]
     public interface IPing1
-    {     
+    {
         [OperationContract(IsOneWay = true)]
         void BroadcastAddSocket(UserDataBinding user);
         [OperationContract(IsOneWay = true)]
@@ -28,17 +28,17 @@ namespace Peer2Peer
     // Implementatiom
     public class PingImplementation : IPing1
     {
-        
+
         private List<UserDataBinding> allHosts = new List<UserDataBinding>();
         public UserDataBinding MyHost { get; set; }
         public IPing1 myChannel { private get; set; }
-      
+
         public void BroadcastAddSocket(UserDataBinding user)
         {
             if (!allHosts.Exists(x => x.Username == user.Username))
                 allHosts.Add(user);
 
-                myChannel.BroadcastNewUser(MyHost);
+            myChannel.BroadcastNewUser(MyHost);
         }
 
         public void BroadcastNewUser(UserDataBinding user)
@@ -62,14 +62,14 @@ namespace Peer2Peer
         {
             if (MyHost.Username == otherPeer)
             {
-                Console.WriteLine("my peer: " + myPeer + " other peer: " + otherPeer);              
+                Console.WriteLine("my peer: " + myPeer + " other peer: " + otherPeer);
                 connectClient(allHosts.Find(x => x.Username.Equals(myPeer)));
             }
         }
 
         private void connectClient(UserDataBinding user)
         {
-            Client.StartClient(MyHost.IP, user.PORT);         
+            Client.StartClient(MyHost.IP, user.PORT);
         }
     }
     //Open Peer
@@ -80,7 +80,7 @@ namespace Peer2Peer
         public IPing1 Channel;
         public PingImplementation Host;
 
-    
+
         public Peer(UserDataBinding user)
         {
             User = user;
@@ -98,7 +98,7 @@ namespace Peer2Peer
 
             Host = new PingImplementation();
             Host.MyHost = User;
-           
+
 
             _factory = new System.ServiceModel.DuplexChannelFactory<IPing1>(new InstanceContext(Host), endpoint);
 
@@ -117,6 +117,7 @@ namespace Peer2Peer
             ((ICommunicationObject)Channel).Close();
             if (_factory != null)
                 _factory.Close();
+            Channel = null;
         }
         private readonly AutoResetEvent _stopFlag = new AutoResetEvent(false);
         public void Run()

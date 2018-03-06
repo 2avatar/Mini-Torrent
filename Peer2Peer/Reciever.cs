@@ -36,6 +36,9 @@ namespace Peer2Peer
         private static long fileLen;
         private static long millisecondsStart, millisecondDuring;
 
+        private static bool loopFlag = true;
+        private static Socket listener;
+
         public static void StartListening(string port)
         {
             // Data buffer for incoming data.  
@@ -49,7 +52,7 @@ namespace Peer2Peer
             IPEndPoint localEndPoint = new IPEndPoint(ipAddress, int.Parse(port));
 
             // Create a TCP/IP socket.  
-            Socket listener = new Socket(ipAddress.AddressFamily,
+            listener = new Socket(ipAddress.AddressFamily,
                 SocketType.Stream, ProtocolType.Tcp);
 
             // Bind the socket to the local endpoint and listen for incoming connections.  
@@ -59,16 +62,19 @@ namespace Peer2Peer
                 listener.Listen(100);
 
 
-                while (true)
+                while (loopFlag)
                 {
                     // Set the event to nonsignaled state.  
                     // Start an asynchronous socket to listen for connections.  
                     Socket handler = listener.Accept();
 
-                    requestFile(handler, FileNameToRequest);
+                    if (handler != null)
+                    {
+                        requestFile(handler, FileNameToRequest);
 
-                    Receive(handler);
-                    receiveDone.WaitOne();
+                        Receive(handler);
+                        receiveDone.WaitOne();
+                    }
 
                 }
             }
@@ -76,6 +82,13 @@ namespace Peer2Peer
             {
                 Console.WriteLine(e.ToString());
             }
+        }
+
+        public static void Stop()
+        {
+            loopFlag = false;
+            listener.Close();
+
         }
 
         private static void requestFile(Socket handler, String data)

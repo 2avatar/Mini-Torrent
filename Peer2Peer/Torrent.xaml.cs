@@ -25,9 +25,10 @@ namespace Peer2Peer
         private Peer peer;
         private UserDataBinding User { get; set; }
         private Thread peerThread;
+        private Thread listenerThread;
 
         public Torrent(UserDataBinding user)
-        {         
+        {
             InitializeComponent();
 
             Client.SharedFolderPath = user.FolderPath;
@@ -35,9 +36,11 @@ namespace Peer2Peer
             SocketListener.SharedFolderPath = user.FolderPath;
             SocketListener.UI = this;
 
-            Thread t = new Thread(x => SocketListener.StartListening(User.PORT));
-            t.IsBackground = true;
-            t.Start();
+            listenerThread = new Thread(x => SocketListener.StartListening(User.PORT))
+            {
+                IsBackground = true
+            };
+            listenerThread.Start();
 
             listView.SelectionChanged += onSelectionChanged;
 
@@ -54,7 +57,10 @@ namespace Peer2Peer
         private void startPeer()
         {
             peer = new Peer(User);
-            peerThread = new Thread(peer.Run) { IsBackground = true };
+            peerThread = new Thread(x => peer.Run())
+            {
+                IsBackground = true
+            };
             peerThread.Start();
 
             while (peer.Channel == null) ;
@@ -64,10 +70,17 @@ namespace Peer2Peer
 
         private void stopPeer()
         {
-            peer.Channel.BroadcastRemoveSocket(User);
+
+            if (peer.Channel != null)
+                peer.Channel.BroadcastRemoveSocket(User);
+
             peer.Stop();
             peerThread.Join();
-        }     
+
+            SocketListener.Stop();
+            listenerThread.Join();
+
+        }
 
         private void askPeerToConnect(string peerUsername)
         {
@@ -78,6 +91,7 @@ namespace Peer2Peer
         {
             // sign out
             stopPeer();
+
             signOut(false);
 
 
@@ -90,10 +104,12 @@ namespace Peer2Peer
             UserXML userXML = new UserXML(User.Username, User.Password);
             if (ws.SignOut(userXML.getXMLFormatToString()))
             {
-                Configuration mainWindow = new Configuration();
-                mainWindow.Show();
                 if (!isClosed)
-                this.Close();
+                {
+                    Configuration mainWindow = new Configuration();
+                    mainWindow.Show();
+                    this.Close();
+                }
             }
         }
 
@@ -135,10 +151,11 @@ namespace Peer2Peer
         private void Button_Click_2(object sender, RoutedEventArgs e)
         {
             // download
-            if (listView.HasItems) {
+            if (listView.HasItems)
+            {
 
                 UserXML.File file = (UserXML.File)listView.SelectedItem;
-              
+
                 if (file != null)
                 {
                     SocketListener.FileNameToRequest = file.FileName;
@@ -171,8 +188,8 @@ namespace Peer2Peer
             double timeInSeconds = timeInMilliseconds * 0.001;
             double kiloBits = bytesRead * 0.008;
             double transferRate = Math.Round(kiloBits / timeInSeconds, 2);
-            labelDownload.Content = "Download: \n"+
-                                    "Speed: " + transferRate + " Kbps\n"+
+            labelDownload.Content = "Download: \n" +
+                                    "Speed: " + transferRate + " Kbps\n" +
                             "Time: " + timeInSeconds + "s";
             progressBar.Value += progress;
         }
@@ -182,9 +199,9 @@ namespace Peer2Peer
             double timeInSeconds = timeInMilliseconds * 0.001;
             double kiloBits = bytesRead * 0.008;
             double transferRate = Math.Round(kiloBits / timeInSeconds, 2);
-            labelUpload.Content = "Upload: \n"+
+            labelUpload.Content = "Upload: \n" +
                 "Speed: " + transferRate + " Kbps";
-           
+
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
