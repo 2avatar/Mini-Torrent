@@ -7,3 +7,12 @@ C:\Users\eviat\documents\visual studio 2015\Projects\MiniTorrent\DAL\obj\Debug\M
 C:\Users\eviat\documents\visual studio 2015\Projects\MiniTorrent\DAL\obj\Debug\refactor.xml
 C:\Users\eviat\documents\visual studio 2015\Projects\MiniTorrent\DAL\obj\Debug\postdeploy.sql
 C:\Users\eviat\documents\visual studio 2015\Projects\MiniTorrent\DAL\obj\Debug\predeploy.sql
+C:\All Projects\Visual Studio\MiniTorrent\DAL\bin\Debug\DAL.dacpac
+C:\All Projects\Visual Studio\MiniTorrent\DAL\bin\Debug\DAL.dll
+C:\All Projects\Visual Studio\MiniTorrent\DAL\bin\Debug\DAL.pdb
+C:\All Projects\Visual Studio\MiniTorrent\DAL\obj\Debug\Model.xml
+C:\All Projects\Visual Studio\MiniTorrent\DAL\obj\Debug\refactor.xml
+C:\All Projects\Visual Studio\MiniTorrent\DAL\obj\Debug\postdeploy.sql
+C:\All Projects\Visual Studio\MiniTorrent\DAL\obj\Debug\predeploy.sql
+C:\All Projects\Visual Studio\MiniTorrent\DAL\obj\Debug\DAL.dll
+C:\All Projects\Visual Studio\MiniTorrent\DAL\obj\Debug\DAL.pdb

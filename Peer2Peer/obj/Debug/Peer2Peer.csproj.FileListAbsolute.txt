@@ -14,3 +14,36 @@ C:\Users\eviat\documents\visual studio 2015\Projects\MiniTorrent\Peer2Peer\obj\D
 C:\Users\eviat\documents\visual studio 2015\Projects\MiniTorrent\Peer2Peer\obj\Debug\Configuration.g.cs
 C:\Users\eviat\documents\visual studio 2015\Projects\MiniTorrent\Peer2Peer\obj\Debug\Configuration.baml
 C:\Users\eviat\Documents\Visual Studio 2015\Projects\MiniTorrent\Peer2Peer\obj\Debug\Peer2Peer.csprojResolveAssemblyReference.cache
+C:\Users\Eviatar Admon\Desktop\studies\All Projects\visual studio\MiniTorrent\Peer2Peer\bin\Debug\Peer2Peer.exe.config
+C:\Users\Eviatar Admon\Desktop\studies\All Projects\visual studio\MiniTorrent\Peer2Peer\bin\Debug\Peer2Peer.exe
+C:\Users\Eviatar Admon\Desktop\studies\All Projects\visual studio\MiniTorrent\Peer2Peer\bin\Debug\Peer2Peer.pdb
+C:\Users\Eviatar Admon\Desktop\studies\All Projects\visual studio\MiniTorrent\Peer2Peer\obj\Debug\Peer2Peer.csprojResolveAssemblyReference.cache
+C:\Users\Eviatar Admon\Desktop\studies\All Projects\visual studio\MiniTorrent\Peer2Peer\obj\Debug\Configuration.g.cs
+C:\Users\Eviatar Admon\Desktop\studies\All Projects\visual studio\MiniTorrent\Peer2Peer\obj\Debug\Torrent.g.cs
+C:\Users\Eviatar Admon\Desktop\studies\All Projects\visual studio\MiniTorrent\Peer2Peer\obj\Debug\App.g.cs
+C:\Users\Eviatar Admon\Desktop\studies\All Projects\visual studio\MiniTorrent\Peer2Peer\obj\Debug\Peer2Peer_MarkupCompile.cache
+C:\Users\Eviatar Admon\Desktop\studies\All Projects\visual studio\MiniTorrent\Peer2Peer\obj\Debug\Peer2Peer_MarkupCompile.lref
+C:\Users\Eviatar Admon\Desktop\studies\All Projects\visual studio\MiniTorrent\Peer2Peer\obj\Debug\Configuration.baml
+C:\Users\Eviatar Admon\Desktop\studies\All Projects\visual studio\MiniTorrent\Peer2Peer\obj\Debug\Torrent.baml
+C:\Users\Eviatar Admon\Desktop\studies\All Projects\visual studio\MiniTorrent\Peer2Peer\obj\Debug\Peer2Peer.g.resources
+C:\Users\Eviatar Admon\Desktop\studies\All Projects\visual studio\MiniTorrent\Peer2Peer\obj\Debug\Peer2Peer.Properties.Resources.resources
+C:\Users\Eviatar Admon\Desktop\studies\All Projects\visual studio\MiniTorrent\Peer2Peer\obj\Debug\Peer2Peer.csproj.GenerateResource.cache
+C:\Users\Eviatar Admon\Desktop\studies\All Projects\visual studio\MiniTorrent\Peer2Peer\obj\Debug\Peer2Peer.csproj.CoreCompileInputs.cache
+C:\Users\Eviatar Admon\Desktop\studies\All Projects\visual studio\MiniTorrent\Peer2Peer\obj\Debug\Peer2Peer.exe
+C:\Users\Eviatar Admon\Desktop\studies\All Projects\visual studio\MiniTorrent\Peer2Peer\obj\Debug\Peer2Peer.pdb
+C:\All Projects\Visual Studio\MiniTorrent\Peer2Peer\bin\Debug\Peer2Peer.exe.config
+C:\All Projects\Visual Studio\MiniTorrent\Peer2Peer\bin\Debug\Peer2Peer.exe
+C:\All Projects\Visual Studio\MiniTorrent\Peer2Peer\bin\Debug\Peer2Peer.pdb
+C:\All Projects\Visual Studio\MiniTorrent\Peer2Peer\obj\Debug\Configuration.g.cs
+C:\All Projects\Visual Studio\MiniTorrent\Peer2Peer\obj\Debug\Torrent.g.cs
+C:\All Projects\Visual Studio\MiniTorrent\Peer2Peer\obj\Debug\App.g.cs
+C:\All Projects\Visual Studio\MiniTorrent\Peer2Peer\obj\Debug\Peer2Peer_MarkupCompile.cache
+C:\All Projects\Visual Studio\MiniTorrent\Peer2Peer\obj\Debug\Peer2Peer_MarkupCompile.lref
+C:\All Projects\Visual Studio\MiniTorrent\Peer2Peer\obj\Debug\Configuration.baml
+C:\All Projects\Visual Studio\MiniTorrent\Peer2Peer\obj\Debug\Torrent.baml
+C:\All Projects\Visual Studio\MiniTorrent\Peer2Peer\obj\Debug\Peer2Peer.g.resources
+C:\All Projects\Visual Studio\MiniTorrent\Peer2Peer\obj\Debug\Peer2Peer.Properties.Resources.resources
+C:\All Projects\Visual Studio\MiniTorrent\Peer2Peer\obj\Debug\Peer2Peer.csproj.GenerateResource.cache
+C:\All Projects\Visual Studio\MiniTorrent\Peer2Peer\obj\Debug\Peer2Peer.csproj.CoreCompileInputs.cache
+C:\All Projects\Visual Studio\MiniTorrent\Peer2Peer\obj\Debug\Peer2Peer.exe
+C:\All Projects\Visual Studio\MiniTorrent\Peer2Peer\obj\Debug\Peer2Peer.pdb

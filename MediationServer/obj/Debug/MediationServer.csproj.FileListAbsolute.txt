@@ -31,3 +31,72 @@ C:\Users\eviat\documents\visual studio 2015\Projects\MiniTorrent\MediationServer
 C:\Users\eviat\documents\visual studio 2015\Projects\MiniTorrent\MediationServer\obj\Debug\MediationServer.dll
 C:\Users\eviat\documents\visual studio 2015\Projects\MiniTorrent\MediationServer\obj\Debug\MediationServer.pdb
 C:\Users\eviat\documents\visual studio 2015\Projects\MiniTorrent\MediationServer\obj\Debug\MediationServer.csprojResolveAssemblyReference.cache
+C:\Users\Eviatar Admon\Desktop\studies\All Projects\visual studio\MiniTorrent\MediationServer\bin\ApplicationInsights.config
+C:\Users\Eviatar Admon\Desktop\studies\All Projects\visual studio\MiniTorrent\MediationServer\bin\roslyn\csc.exe
+C:\Users\Eviatar Admon\Desktop\studies\All Projects\visual studio\MiniTorrent\MediationServer\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+C:\Users\Eviatar Admon\Desktop\studies\All Projects\visual studio\MiniTorrent\MediationServer\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+C:\Users\Eviatar Admon\Desktop\studies\All Projects\visual studio\MiniTorrent\MediationServer\bin\roslyn\Microsoft.CodeAnalysis.dll
+C:\Users\Eviatar Admon\Desktop\studies\All Projects\visual studio\MiniTorrent\MediationServer\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\Users\Eviatar Admon\Desktop\studies\All Projects\visual studio\MiniTorrent\MediationServer\bin\roslyn\Microsoft.CSharp.Core.targets
+C:\Users\Eviatar Admon\Desktop\studies\All Projects\visual studio\MiniTorrent\MediationServer\bin\roslyn\Microsoft.VisualBasic.Core.targets
+C:\Users\Eviatar Admon\Desktop\studies\All Projects\visual studio\MiniTorrent\MediationServer\bin\roslyn\System.Collections.Immutable.dll
+C:\Users\Eviatar Admon\Desktop\studies\All Projects\visual studio\MiniTorrent\MediationServer\bin\roslyn\System.Reflection.Metadata.dll
+C:\Users\Eviatar Admon\Desktop\studies\All Projects\visual studio\MiniTorrent\MediationServer\bin\roslyn\vbc.exe
+C:\Users\Eviatar Admon\Desktop\studies\All Projects\visual studio\MiniTorrent\MediationServer\bin\roslyn\VBCSCompiler.exe
+C:\Users\Eviatar Admon\Desktop\studies\All Projects\visual studio\MiniTorrent\MediationServer\bin\roslyn\VBCSCompiler.exe.config
+C:\Users\Eviatar Admon\Desktop\studies\All Projects\visual studio\MiniTorrent\MediationServer\bin\MediationServer.dll.config
+C:\Users\Eviatar Admon\Desktop\studies\All Projects\visual studio\MiniTorrent\MediationServer\bin\MediationServer.dll
+C:\Users\Eviatar Admon\Desktop\studies\All Projects\visual studio\MiniTorrent\MediationServer\bin\MediationServer.pdb
+C:\Users\Eviatar Admon\Desktop\studies\All Projects\visual studio\MiniTorrent\MediationServer\bin\Microsoft.AI.Agent.Intercept.dll
+C:\Users\Eviatar Admon\Desktop\studies\All Projects\visual studio\MiniTorrent\MediationServer\bin\Microsoft.AI.DependencyCollector.dll
+C:\Users\Eviatar Admon\Desktop\studies\All Projects\visual studio\MiniTorrent\MediationServer\bin\Microsoft.AI.PerfCounterCollector.dll
+C:\Users\Eviatar Admon\Desktop\studies\All Projects\visual studio\MiniTorrent\MediationServer\bin\Microsoft.AI.ServerTelemetryChannel.dll
+C:\Users\Eviatar Admon\Desktop\studies\All Projects\visual studio\MiniTorrent\MediationServer\bin\Microsoft.AI.Web.dll
+C:\Users\Eviatar Admon\Desktop\studies\All Projects\visual studio\MiniTorrent\MediationServer\bin\Microsoft.AI.WindowsServer.dll
+C:\Users\Eviatar Admon\Desktop\studies\All Projects\visual studio\MiniTorrent\MediationServer\bin\Microsoft.ApplicationInsights.dll
+C:\Users\Eviatar Admon\Desktop\studies\All Projects\visual studio\MiniTorrent\MediationServer\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\Users\Eviatar Admon\Desktop\studies\All Projects\visual studio\MiniTorrent\MediationServer\bin\Microsoft.AI.DependencyCollector.xml
+C:\Users\Eviatar Admon\Desktop\studies\All Projects\visual studio\MiniTorrent\MediationServer\bin\Microsoft.AI.ServerTelemetryChannel.xml
+C:\Users\Eviatar Admon\Desktop\studies\All Projects\visual studio\MiniTorrent\MediationServer\bin\Microsoft.AI.Web.xml
+C:\Users\Eviatar Admon\Desktop\studies\All Projects\visual studio\MiniTorrent\MediationServer\bin\Microsoft.AI.WindowsServer.xml
+C:\Users\Eviatar Admon\Desktop\studies\All Projects\visual studio\MiniTorrent\MediationServer\bin\Microsoft.ApplicationInsights.xml
+C:\Users\Eviatar Admon\Desktop\studies\All Projects\visual studio\MiniTorrent\MediationServer\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\Users\Eviatar Admon\Desktop\studies\All Projects\visual studio\MiniTorrent\MediationServer\obj\Debug\MediationServer.csprojResolveAssemblyReference.cache
+C:\Users\Eviatar Admon\Desktop\studies\All Projects\visual studio\MiniTorrent\MediationServer\obj\Debug\MediationServer.csproj.CoreCompileInputs.cache
+C:\Users\Eviatar Admon\Desktop\studies\All Projects\visual studio\MiniTorrent\MediationServer\obj\Debug\MediationServer.csproj.CopyComplete
+C:\Users\Eviatar Admon\Desktop\studies\All Projects\visual studio\MiniTorrent\MediationServer\obj\Debug\MediationServer.dll
+C:\Users\Eviatar Admon\Desktop\studies\All Projects\visual studio\MiniTorrent\MediationServer\obj\Debug\MediationServer.pdb
+C:\All Projects\Visual Studio\MiniTorrent\MediationServer\bin\ApplicationInsights.config
+C:\All Projects\Visual Studio\MiniTorrent\MediationServer\bin\roslyn\csc.exe
+C:\All Projects\Visual Studio\MiniTorrent\MediationServer\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll
+C:\All Projects\Visual Studio\MiniTorrent\MediationServer\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll
+C:\All Projects\Visual Studio\MiniTorrent\MediationServer\bin\roslyn\Microsoft.CodeAnalysis.dll
+C:\All Projects\Visual Studio\MiniTorrent\MediationServer\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll
+C:\All Projects\Visual Studio\MiniTorrent\MediationServer\bin\roslyn\Microsoft.CSharp.Core.targets
+C:\All Projects\Visual Studio\MiniTorrent\MediationServer\bin\roslyn\Microsoft.VisualBasic.Core.targets
+C:\All Projects\Visual Studio\MiniTorrent\MediationServer\bin\roslyn\System.Collections.Immutable.dll
+C:\All Projects\Visual Studio\MiniTorrent\MediationServer\bin\roslyn\System.Reflection.Metadata.dll
+C:\All Projects\Visual Studio\MiniTorrent\MediationServer\bin\roslyn\vbc.exe
+C:\All Projects\Visual Studio\MiniTorrent\MediationServer\bin\roslyn\VBCSCompiler.exe
+C:\All Projects\Visual Studio\MiniTorrent\MediationServer\bin\roslyn\VBCSCompiler.exe.config
+C:\All Projects\Visual Studio\MiniTorrent\MediationServer\bin\MediationServer.dll.config
+C:\All Projects\Visual Studio\MiniTorrent\MediationServer\bin\MediationServer.dll
+C:\All Projects\Visual Studio\MiniTorrent\MediationServer\bin\MediationServer.pdb
+C:\All Projects\Visual Studio\MiniTorrent\MediationServer\bin\Microsoft.AI.Agent.Intercept.dll
+C:\All Projects\Visual Studio\MiniTorrent\MediationServer\bin\Microsoft.AI.DependencyCollector.dll
+C:\All Projects\Visual Studio\MiniTorrent\MediationServer\bin\Microsoft.AI.PerfCounterCollector.dll
+C:\All Projects\Visual Studio\MiniTorrent\MediationServer\bin\Microsoft.AI.ServerTelemetryChannel.dll
+C:\All Projects\Visual Studio\MiniTorrent\MediationServer\bin\Microsoft.AI.Web.dll
+C:\All Projects\Visual Studio\MiniTorrent\MediationServer\bin\Microsoft.AI.WindowsServer.dll
+C:\All Projects\Visual Studio\MiniTorrent\MediationServer\bin\Microsoft.ApplicationInsights.dll
+C:\All Projects\Visual Studio\MiniTorrent\MediationServer\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll
+C:\All Projects\Visual Studio\MiniTorrent\MediationServer\bin\Microsoft.AI.DependencyCollector.xml
+C:\All Projects\Visual Studio\MiniTorrent\MediationServer\bin\Microsoft.AI.ServerTelemetryChannel.xml
+C:\All Projects\Visual Studio\MiniTorrent\MediationServer\bin\Microsoft.AI.Web.xml
+C:\All Projects\Visual Studio\MiniTorrent\MediationServer\bin\Microsoft.AI.WindowsServer.xml
+C:\All Projects\Visual Studio\MiniTorrent\MediationServer\bin\Microsoft.ApplicationInsights.xml
+C:\All Projects\Visual Studio\MiniTorrent\MediationServer\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.xml
+C:\All Projects\Visual Studio\MiniTorrent\MediationServer\obj\Debug\MediationServer.csproj.CoreCompileInputs.cache
+C:\All Projects\Visual Studio\MiniTorrent\MediationServer\obj\Debug\MediationServer.csproj.CopyComplete
+C:\All Projects\Visual Studio\MiniTorrent\MediationServer\obj\Debug\MediationServer.dll
+C:\All Projects\Visual Studio\MiniTorrent\MediationServer\obj\Debug\MediationServer.pdb

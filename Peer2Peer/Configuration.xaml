@@ -10,7 +10,7 @@
     <Grid>
 
         <Grid.Background>
-            <ImageBrush ImageSource="C:\Users\eviat\Documents\Visual Studio 2015\Projects\MiniTorrent\torrentmain.jpg" Stretch="UniformToFill"/>
+            <ImageBrush ImageSource="C:\All Projects\Visual Studio\MiniTorrent\torrentmain.jpg" Stretch="UniformToFill"/>
         </Grid.Background>
 
         <Grid.RowDefinitions>

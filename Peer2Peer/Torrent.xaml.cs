@@ -52,6 +52,7 @@ namespace Peer2Peer
         {
             progressBar.Value = 0;
             labelDownload.Content = "";
+            labelUpload.Content = "";
         }
 
         private void startPeer()

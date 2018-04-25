@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.27428.2037
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "WebPortal", "WebPortal\", "{BC2081C5-ED5B-4762-BAA9-6FF7EE08E7CB}"
 	ProjectSection(WebsiteProperties) = preProject
@@ -27,16 +27,9 @@ Project("{E24C65DC-7377-472B-9ABA-BC803B73C61A}") = "WebPortal", "WebPortal\", "
 EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "DAL", "DAL\DAL.sqlproj", "{DE9651DB-00BE-4890-8EED-85052362DF68}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Test", "Test\Test.csproj", "{5E7216C9-480A-41B0-A023-9070E5693854}"
-	ProjectSection(ProjectDependencies) = postProject
-		{1B54CC32-D54C-4CFA-877C-4BDEC66DA574} = {1B54CC32-D54C-4CFA-877C-4BDEC66DA574}
-	EndProjectSection
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MediationServer", "MediationServer\MediationServer.csproj", "{1B54CC32-D54C-4CFA-877C-4BDEC66DA574}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Peer2Peer", "Peer2Peer\Peer2Peer.csproj", "{2405004E-FCC8-43EA-A38A-723AE0FFC63F}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StartUp", "StartUp\StartUp.csproj", "{A28FD0D8-1784-400D-8F42-64A8C5FABB85}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -54,10 +47,6 @@ Global
 		{DE9651DB-00BE-4890-8EED-85052362DF68}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{DE9651DB-00BE-4890-8EED-85052362DF68}.Release|Any CPU.Build.0 = Release|Any CPU
 		{DE9651DB-00BE-4890-8EED-85052362DF68}.Release|Any CPU.Deploy.0 = Release|Any CPU
-		{5E7216C9-480A-41B0-A023-9070E5693854}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5E7216C9-480A-41B0-A023-9070E5693854}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5E7216C9-480A-41B0-A023-9070E5693854}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5E7216C9-480A-41B0-A023-9070E5693854}.Release|Any CPU.Build.0 = Release|Any CPU
 		{1B54CC32-D54C-4CFA-877C-4BDEC66DA574}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{1B54CC32-D54C-4CFA-877C-4BDEC66DA574}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1B54CC32-D54C-4CFA-877C-4BDEC66DA574}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -66,12 +55,11 @@ Global
 		{2405004E-FCC8-43EA-A38A-723AE0FFC63F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2405004E-FCC8-43EA-A38A-723AE0FFC63F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2405004E-FCC8-43EA-A38A-723AE0FFC63F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{A28FD0D8-1784-400D-8F42-64A8C5FABB85}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{A28FD0D8-1784-400D-8F42-64A8C5FABB85}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{A28FD0D8-1784-400D-8F42-64A8C5FABB85}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{A28FD0D8-1784-400D-8F42-64A8C5FABB85}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {1708B274-4F71-41AE-B993-995A2D9DC3D1}
 	EndGlobalSection
 EndGlobal
