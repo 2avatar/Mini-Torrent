@@ -32,18 +32,19 @@ namespace Peer2Peer
 
         public Configuration()
         {
+           
             if (Process.GetProcessesByName(Process.GetCurrentProcess().ProcessName).Count() < 1)
             {    
                     Process.Start("Peer2Peer.exe");  //Change your exe
             }
 
-            user.Username = "eviatar";
-
+            
             user.IP = "127.0.0.1";
-            user.PORT = "8001";
+
 
             InitializeComponent();
             DataContext = user;
+            this.Title = "User Login";
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -59,17 +60,19 @@ namespace Peer2Peer
 
             Environment.SpecialFolder root = folderDlg.RootFolder;
 
-            DirectoryInfo d = new DirectoryInfo(folderDlg.SelectedPath);
-            try
+            if (!string.IsNullOrEmpty(folderDlg.SelectedPath))
             {
-                FileInfo[] Files = d.GetFiles();
-                foreach (var f in Files)
+                DirectoryInfo d = new DirectoryInfo(folderDlg.SelectedPath);
+                try
                 {
-                    filesList.Add(new UserXML.File(f.Name, f.Length));
+                    FileInfo[] Files = d.GetFiles();
+                    foreach (var f in Files)
+                    {
+                        filesList.Add(new UserXML.File(f.Name, f.Length));
+                    }
                 }
+                catch { }
             }
-            catch { }
-
         }
 
         private void Button_Click_1(object sender, RoutedEventArgs e)

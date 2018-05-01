@@ -30,7 +30,7 @@ namespace Peer2Peer
         public Torrent(UserDataBinding user)
         {
             InitializeComponent();
-
+            this.Title = user.Username;
             Client.SharedFolderPath = user.FolderPath;
             Client.UI = this;
             SocketListener.SharedFolderPath = user.FolderPath;

@@ -100,3 +100,4 @@ C:\All Projects\Visual Studio\MiniTorrent\MediationServer\obj\Debug\MediationSer
 C:\All Projects\Visual Studio\MiniTorrent\MediationServer\obj\Debug\MediationServer.csproj.CopyComplete
 C:\All Projects\Visual Studio\MiniTorrent\MediationServer\obj\Debug\MediationServer.dll
 C:\All Projects\Visual Studio\MiniTorrent\MediationServer\obj\Debug\MediationServer.pdb
+C:\All Projects\visual studio\MiniTorrent\MediationServer\obj\Debug\MediationServer.csprojResolveAssemblyReference.cache

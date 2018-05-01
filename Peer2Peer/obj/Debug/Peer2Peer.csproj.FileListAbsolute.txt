@@ -47,3 +47,4 @@ C:\All Projects\Visual Studio\MiniTorrent\Peer2Peer\obj\Debug\Peer2Peer.csproj.G
 C:\All Projects\Visual Studio\MiniTorrent\Peer2Peer\obj\Debug\Peer2Peer.csproj.CoreCompileInputs.cache
 C:\All Projects\Visual Studio\MiniTorrent\Peer2Peer\obj\Debug\Peer2Peer.exe
 C:\All Projects\Visual Studio\MiniTorrent\Peer2Peer\obj\Debug\Peer2Peer.pdb
+C:\All Projects\visual studio\MiniTorrent\Peer2Peer\obj\Debug\Peer2Peer.csprojResolveAssemblyReference.cache
